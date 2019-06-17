@@ -3,21 +3,11 @@
     <div>
       <app-logo/>
       <h1 class="title">
-        site
+        Site under construction
       </h1>
       <h2 class="subtitle">
         Nuxt.js project
       </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
     </div>
   </section>
 </template>
@@ -39,6 +29,9 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-image: url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .title {
