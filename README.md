@@ -1,165 +1,120 @@
-# AIR theme for hugo
+# Victor Hugo CMS Template
+<!-- Markdown snippet -->
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/bdougie/casper-cms-template)
 
-Air is a single-column theme for [Hugo](http://gohugo.io/).
-Ported from [Casper theme for Ghost ](https://github.com/TryGhost/Casper), [vjeantet/hugo-theme-casper](https://github.com/vjeantet/hugo-theme-casper)
+![casper theme image](https://s3-us-west-1.amazonaws.com/publis-brian-images/casper.jpg)
 
-- blog demo : http://syui.github.io/hugo-theme-air
+**A [Hugo](http://gohugo.io/) boilerplate for creating truly epic websites**
 
-- blog source : https://github.com/syui/hugo-theme-air
+This is a boilerplate for using Hugo as a static site generator and Gulp + Weback as your
+asset pipeline.
 
-![Hugo Air Theme screenshot](https://raw.githubusercontent.com/syui/hugo-theme-air/master/images/screen.gif)
+It's setup to use post-css and babel for CSS and JavaScript.
 
-```bash
-$ git clone https://github.com/syui/hugo-theme-air
+## Usage
+Be sure that you have the latest node, npm and [Hugo](https://gohugo.io/overview/installing/) installed. If you need to install hugo, run:
 
-$ cd hugo-theme-air
-
-$ hugo
-
-$ hugo server
----------------------------------
-$ curl 127.0.0.1:1313/hugo-theme-air 
-```
-## Background Image
-
-[https://github.com/syui/hugo-theme-air/blob/master/static/css/screen.css#L1995](https://github.com/syui/hugo-theme-air/blob/master/static/css/screen.css#L1995)
-
-...`slow`
-
-## Features
-
-* [VincentGarreau/particles.js](https://github.com/VincentGarreau/particles.js/)
-* Google Analytics (optional)
-* Disqus ( can disable comments by content)
-* Share buttons on Facebook, Twitter, Google (can disable share by content)
-* Big cover image (optional)
-* Custom cover by content (optional)
-* Tagging
-* Pagination
-* Menu
-
-# Theme usage and asumptions
-* All blog posts are in the ```post``` folder (```content/post```)
-* The homepage displays a paginated list of contents from the post Section (other contents may be added to main menu, see bellow)
-
-# Installation
-
-## Installing this theme
-
-    mkdir themes
-    cd themes
-    git clone https://github.com/syui/hugo-theme-air
-
-## Build your website with this theme
-
-    hugo server -t hugo-theme-air
-
-# Configuration
-
-**config.toml**
-
-``` bash
-$ cat config.toml.backup
-
-$ cp config.toml.backup config.toml
-```
-
-Example : [config.toml](https://github.com/syui/hugo-theme-air/blob/master/config.toml.backup)
-
-## Multiple authors configuration
-
-In addition to providing data for a single author as shown in the example above, multiple authors
-can be configured via data/authors/\*.(yml, toml, json) entries. If the key provided in
-.Site.Params.author matched a data/authors/\* entry, it will be used as the default. Overrides
-per page can be done by a simple author = other_author_key entry in the front matter. For those
-pages where you want to omit the author block completely, a .Params.noauthor entry is also
-available.
-
-``` bash
-$ hugo new post/foo.md
-
-$ cat content/post/foo.md
-```
-
-Example author definition file:
-
-
-``` yml
-name: John Doe
-bio: The most uninteresting man in the world.
-location: Normal, IL
-website: http://example.com
-
-```
-
-Example override author per page file:
-``` toml
-+++
-author = ""
-date = "2014-07-11T10:54:24+02:00"
-title = ""
-...
-+++
-
-Contents here
-
-```
-
-## Metadata on each content file, example
-
-``` toml
-+++
-author = ""
-date = "2014-07-11T10:54:24+02:00"
-draft = false
-title = "dotScale 2014 as a sketch"
-slug = "dotscale-2014-as-a-sketch"
-tags = ["event","dotScale","sketchnote"]
-image = "images/2014/Jul/titledotscale.png"
-comments = true     # set false to hide Disqus comments
-share = true        # set false to share buttons
-menu = ""           # set "main" to add this content to the main menu
-+++
-
-Contents here
-```
-
-## Create new content based with default metadata from this theme
-You can easyly create a new content with all metadatas used by this theme, using this command 
-```
-hugo new -t hugo-theme-air post/my-post.md
-```
-## Hosting for GitHub Pages
+Clone this repository and run:
 
 ```bash
-# build
-$ hugo 
-
-$ cd public
-
-# preview
-$ jekyll server
-$ rm -rf _site
-
-# make repository
-$ git init
-$ git remote add origin $url
-$ git add .
-$ git commit -m "first commit"
-$ git push -u origin master
-
-# push branch:gh-pages
-$ git checkout -b gh-pages
-$ git commit -m "open pages"
-$ git push -u origin gh-pages
-
-# open
-$ curl user.github.io/repository
+npm install
+npm start
 ```
 
-# Contact me
+Then visit http://localhost:3000/ - BrowserSync will automatically reload CSS or
+refresh the page when stylesheets or content changes.
 
-:beetle: open an issue in github
+To build your static output to the `/dist` folder, use:
 
-:bird: [https://twitter.com/syui__](https://twitter.com/syui__)
+```bash
+npm run build
+```
 
+## Structure
+
+```
+|--site                // Everything in here will be built with hugo
+|  |--content          // Pages and collections - ask if you need extra pages
+|  |--data             // YAML data files with any data for use in examples
+|  |--layouts          // This is where all templates go
+|  |  |--partials      // This is where includes live
+|  |  |--index.html    // The index page
+|  |--static           // Files in here ends up in the public folder
+|--src                 // Files that will pass through the asset pipeline
+|  |--css              // CSS files in the root of this folder will end up in /css/...
+|  |--js               // app.js will be compiled to /js/app.js with babel
+```
+## CMS
+
+### How it works
+
+Netlify CMS is a single-page app that you pull into the `/admin` part of your site.
+
+It presents a clean UI for editing content stored in a Git repository.
+
+You setup a YAML config to describe the content model of your site, and typically
+tweak the main layout of the CMS a bit to fit your own site.
+
+### Setup GitHub as a Backend
+
+In the `config.yml` file [change the GitHub owner and repo](https://github.com/bdougie/strata-cms-template/blob/master/site/static/admin/config.yml#L3) to reflect your repo:
+
+```yaml
+backend:
+  name: github
+  repo: owner/repo # Path to your Github repository
+  branch: master # Branch to update (master by default)
+  
+  ...
+```
+When a user navigates to `/admin` she'll be prompted to login, and once authenticated
+she'll be able to create new content or edit existing content.
+The default Github-based authenticator integrates with Netlify's [Authentication Provider feature](https://www.netlify.com/docs/authentication-providers) and the repository
+backend integrates directly with Github's API.
+
+To get everything hooked up, setup continuous deployment from Github to Netlify
+and then follow [the documentation](https://www.netlify.com/docs/authentication-providers)
+to setup Github as an authentication provider.
+
+That's it, now you should be able to go to the `/admin` section of your site and
+log in.
+
+### Find out more and contribute
+
+Visit the [Netlify CMS](https://github.com/netlify/netlify-cms/) to find out more and contribute. 
+
+## Basic Concepts
+
+You can read more about Hugo's template language in their documentation here:
+
+https://gohugo.io/templates/overview/
+
+The most useful page there is the one about the available functions:
+
+https://gohugo.io/templates/functions/
+
+For assets that are completely static and don't need to go through the asset pipeline,
+use the `site/static` folder. Images, font-files, etc, all go there.
+
+Files in the static folder ends up in the web root. So a file called `site/static/favicon.ico`
+will end up being available as `/favicon.ico` and so on...
+
+The `src/js/app.js` file is the entrypoint for webpack and will be built to `/dist/app.js`.
+
+You can use ES6 and use both relative imports or import libraries from npm.
+
+Any CSS file directly under the `src/css/` folder will get compiled with [PostCSS Next](http://cssnext.io/)
+to `/dist/css/{filename}.css`. Import statements will be resolved as part of the build
+
+## Deploying to netlify
+
+- Push your clone to your own GitHub repository.
+- [Create a new site on Netlify](https://app.netlify.com/start) and link the repository.
+
+Now netlify will build and deploy your site whenever you push to git.
+
+##  Enjoy!!
+
+#### License
+
+[MIT](LICENSE)
