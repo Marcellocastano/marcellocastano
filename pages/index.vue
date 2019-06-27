@@ -1,6 +1,8 @@
 <template>
-  <section class="container">
-  <TopNav/>
+  <div class="container">
+    <header class="header2">
+      <TopNav/>
+    </header>
     <div class="content">
   		<AppLogo/>
   		<h1 class="title">
@@ -10,32 +12,36 @@
   		Nuxt.js project
   		</h2>
     </div>
-  </section>
+    <footer>
+      <Footer/>
+    </footer>
+  </div>
 </template>
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
 import TopNav from '~/components/top-nav.vue'
+import Footer from '~/components/footer.vue'
 
 export default {
   components: {
     AppLogo,
-    TopNav
+    TopNav,
+    Footer
   }
 }
 </script>
 
 <style>
+header, footer {
+  width: 100%;
+}
 .container {
-	min-height: 100vh;
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
+	min-height: 100%;
 	text-align: center;
-	/*background-image: url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
-	background-repeat: no-repeat;
-	background-size: cover;*/
-	flex-direction: column;
+}
+.content {
+  min-height: 70vh;
 }
 .title {
   font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
